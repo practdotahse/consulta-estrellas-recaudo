@@ -1,6 +1,7 @@
 :root {
-  --azul: #0B4FA3;
-  --azul-claro: #EAF2FF;
+  --azul-principal: #0B4FA3;
+  --azul-acento: #3A7BD5;
+  --azul-fondo: #EAF2FF;
   --verde: #2FB36F;
   --fondo: #F4F6F9;
   --texto: #333;
@@ -24,6 +25,7 @@ body {
   padding: 16px;
 }
 
+/* CARD */
 .card {
   background: var(--blanco);
   width: 100%;
@@ -33,34 +35,38 @@ body {
   box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
 
-/* HEADER */
+/* HEADER – FONDO BLANCO */
 .header {
-  background: linear-gradient(135deg, #3A7BD5, #0B4FA3);
-  color: white;
-  padding: 22px;
+  background: #ffffff;
+  padding: 24px 22px 18px 22px;
   text-align: center;
+  border-bottom: 4px solid var(--azul-acento);
 }
 
+/* LOGO */
 .logo {
-  max-width: 160px;
+  max-width: 200px;
   width: 100%;
   height: auto;
-  display: block;
-  margin: 0 auto 12px auto;
+  margin-bottom: 10px;
 }
 
+/* TÍTULO */
 .header h1 {
   font-size: 20px;
   margin: 0;
   font-weight: 600;
+  color: var(--azul-principal);
 }
 
+/* SUBTÍTULO */
 .header p {
   font-size: 13px;
   margin-top: 6px;
-  opacity: 0.9;
+  color: var(--gris);
 }
 
+/* CONTENT */
 .content {
   padding: 22px;
 }
@@ -78,8 +84,14 @@ input {
   border-radius: 10px;
   border: 1px solid #D1D5DB;
   font-size: 15px;
+  outline: none;
 }
 
+input:focus {
+  border-color: var(--azul-principal);
+}
+
+/* BOTÓN */
 button {
   width: 100%;
   margin-top: 14px;
@@ -97,6 +109,7 @@ button:hover {
   opacity: 0.95;
 }
 
+/* RESULTADO */
 .resultado {
   margin-top: 22px;
   font-size: 14px;
@@ -109,8 +122,8 @@ button:hover {
 
 /* ESTRELLAS */
 .estrellas-box {
-  background: var(--azul-claro);
-  border-left: 5px solid var(--azul);
+  background: var(--azul-fondo);
+  border-left: 5px solid var(--azul-principal);
   padding: 14px;
   border-radius: 12px;
   margin: 16px 0 8px 0;
@@ -145,6 +158,7 @@ button:hover {
   font-size: 12.5px;
 }
 
+/* ERROR */
 .error {
   color: #D32F2F;
   margin-top: 14px;
@@ -152,6 +166,7 @@ button:hover {
   text-align: center;
 }
 
+/* FOOTER */
 footer {
   text-align: center;
   padding: 16px;
