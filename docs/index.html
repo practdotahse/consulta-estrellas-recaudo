@@ -8,84 +8,105 @@
   <style>
     :root {
       --azul: #0056A4;
-      --azul-claro: #E6F0FA;
-      --gris: #555;
+      --azul-sec: #0A74DA;
+      --fondo: #F4F7FB;
+      --texto: #333;
+      --gris: #777;
       --blanco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: var(--azul-claro);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--fondo);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      padding: 16px;
     }
 
     .card {
       background: var(--blanco);
       width: 100%;
       max-width: 420px;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     }
 
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .header h1 {
       color: var(--azul);
-      font-size: 20px;
-      margin-bottom: 6px;
+      font-size: 22px;
+      margin: 0;
     }
 
     .header p {
       color: var(--gris);
       font-size: 14px;
-      margin: 0;
+      margin-top: 6px;
     }
 
     label {
       font-size: 14px;
       color: var(--gris);
+      display: block;
+      margin-bottom: 6px;
     }
 
     input {
       width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 10px;
       border: 1px solid #ccc;
       font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--azul-sec);
     }
 
     button {
       width: 100%;
-      margin-top: 14px;
-      padding: 12px;
-      background-color: var(--azul);
+      margin-top: 16px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--azul), var(--azul-sec));
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 12px;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
     }
 
     button:hover {
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .resultado {
-      margin-top: 20px;
+      margin-top: 24px;
       font-size: 14px;
+      color: var(--texto);
     }
 
-    .resultado strong {
-      color: var(--azul);
+    .resultado p {
+      margin: 6px 0;
+    }
+
+    .estrellas {
+      font-size: 20px;
+      margin: 8px 0 14px 0;
+      color: #f5b301;
     }
 
     ul {
@@ -94,17 +115,17 @@
     }
 
     .error {
-      color: red;
-      margin-top: 12px;
+      color: #d32f2f;
+      margin-top: 16px;
       font-size: 14px;
       text-align: center;
     }
 
     footer {
       text-align: center;
-      margin-top: 18px;
+      margin-top: 22px;
       font-size: 12px;
-      color: #888;
+      color: #999;
     }
   </style>
 </head>
@@ -120,7 +141,7 @@
     <label for="cedula">Número de documento</label>
     <input type="text" id="cedula" placeholder="Ingresa tu cédula">
 
-    <button onclick="buscar()">Buscar</button>
+    <button onclick="buscar()">Consultar</button>
 
     <div id="resultado" class="resultado"></div>
     <div id="error" class="error"></div>
@@ -146,14 +167,15 @@ function buscar() {
   error.innerHTML = '';
 
   const persona = datos.find(p =>
-  String(p.cedula).trim() === String(cedula).trim()
-);
-
+    String(p.cedula).trim() === String(cedula).trim()
+  );
 
   if (!persona) {
     error.textContent = 'No se encontraron registros para este documento.';
     return;
   }
+
+  let estrellasHTML = 'Estrellas ⭐'.repeat(persona.total);
 
   let categoriasHTML = '';
   persona.categorias.forEach(cat => {
@@ -163,7 +185,10 @@ function buscar() {
   resultado.innerHTML = `
     <p><strong>Nombre:</strong> ${persona.nombre}</p>
     <p><strong>Cargo:</strong> ${persona.cargo}</p>
-    <p><strong>Total de puntos:</strong> ${persona.total}</p>
+
+    <p><strong>Estrellas obtenidas:</strong></p>
+    <div class="estrellas">${estrellasHTML} (${persona.total})</div>
+
     <p><strong>Categorías reconocidas:</strong></p>
     <ul>${categoriasHTML}</ul>
   `;
@@ -172,4 +197,3 @@ function buscar() {
 
 </body>
 </html>
-
