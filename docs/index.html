@@ -103,10 +103,20 @@
       margin: 6px 0;
     }
 
+    /* ⭐ ESTRELLAS PROTAGONISTAS */
     .estrellas {
-      font-size: 20px;
-      margin: 8px 0 14px 0;
+      font-size: 26px;
+      margin: 16px 0 10px 0;
+      font-weight: 700;
       color: #f5b301;
+      text-align: center;
+    }
+
+    .mensaje {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 18px;
     }
 
     ul {
@@ -175,7 +185,12 @@ function buscar() {
     return;
   }
 
-  let estrellasHTML = 'Estrellas ⭐'.repeat(persona.total);
+  // ⭐ Mensaje según estrellas
+  let mensaje = persona.total >= 5
+    ? '🌟 Excelente desempeño'
+    : persona.total >= 3
+      ? '👏 Buen trabajo'
+      : '💪 Sigue así';
 
   let categoriasHTML = '';
   persona.categorias.forEach(cat => {
@@ -186,8 +201,13 @@ function buscar() {
     <p><strong>Nombre:</strong> ${persona.nombre}</p>
     <p><strong>Cargo:</strong> ${persona.cargo}</p>
 
-    <p><strong>Estrellas obtenidas:</strong></p>
-    <div class="estrellas">${estrellasHTML} (${persona.total})</div>
+    <div class="estrellas">
+      ESTRELLAS ⭐ ${persona.total}
+    </div>
+
+    <div class="mensaje">
+      ${mensaje}
+    </div>
 
     <p><strong>Categorías reconocidas:</strong></p>
     <ul>${categoriasHTML}</ul>
