@@ -14,6 +14,7 @@
       --texto: #333;
       --gris: #6B7280;
       --blanco: #ffffff;
+      --dorado: #F5B301;
     }
 
     * {
@@ -106,16 +107,26 @@
       margin: 6px 0;
     }
 
-    /* TARJETA DE ESTRELLAS */
+    /* ESTRELLAS */
     .estrellas-box {
       background: var(--azul-claro);
       border-left: 5px solid var(--azul);
-      padding: 12px;
-      border-radius: 10px;
-      margin: 14px 0;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--azul);
+      padding: 14px;
+      border-radius: 12px;
+      margin: 16px 0 8px 0;
+      text-align: center;
+    }
+
+    .estrellas-numero {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dorado);
+    }
+
+    .mensaje {
+      font-size: 13px;
+      color: var(--gris);
+      margin-top: 6px;
     }
 
     /* CATEGORÍAS */
@@ -197,6 +208,16 @@ function buscar() {
     return;
   }
 
+  // ⭐ Mensaje según estrellas
+  let mensaje = '';
+  if (persona.total >= 6) {
+    mensaje = 'Excelente desempeño';
+  } else if (persona.total >= 3) {
+    mensaje = 'Buen trabajo';
+  } else {
+    mensaje = 'Sigue así';
+  }
+
   let categoriasHTML = '';
   persona.categorias.forEach(cat => {
     categoriasHTML += `<span class="chip">${cat}</span>`;
@@ -207,7 +228,8 @@ function buscar() {
     <p><strong>Cargo:</strong> ${persona.cargo}</p>
 
     <div class="estrellas-box">
-      ⭐ ESTRELLAS: ${persona.total}
+      <div class="estrellas-numero">ESTRELLAS ⭐ ${persona.total}</div>
+      <div class="mensaje">${mensaje}</div>
     </div>
 
     <p><strong>Categorías reconocidas:</strong></p>
