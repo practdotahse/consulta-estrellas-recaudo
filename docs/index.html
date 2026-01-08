@@ -145,7 +145,10 @@ function buscar() {
   resultado.innerHTML = '';
   error.innerHTML = '';
 
-  const persona = datos.find(p => p.cedula.toString() === cedula);
+  const persona = datos.find(p =>
+  String(p.cedula).trim() === String(cedula).trim()
+);
+
 
   if (!persona) {
     error.textContent = 'No se encontraron registros para este documento.';
