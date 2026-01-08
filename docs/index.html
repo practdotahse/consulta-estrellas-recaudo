@@ -5,172 +5,19 @@
   <title>Consulta de Estrellas – Recaudo Bogotá</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --azul: #0B4FA3;
-      --azul-claro: #EAF2FF;
-      --verde: #2FB36F;
-      --fondo: #F4F6F9;
-      --texto: #333;
-      --gris: #6B7280;
-      --blanco: #ffffff;
-      --dorado: #F5B301;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", "Segoe UI", Arial, sans-serif;
-      background-color: var(--fondo);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 16px;
-    }
-
-    .card {
-      background: var(--blanco);
-      width: 100%;
-      max-width: 420px;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-    }
-
-    /* HEADER */
-    .header {
-      background: linear-gradient(135deg, #0B4FA3, #0A3F85);
-      color: white;
-      padding: 22px;
-      text-align: center;
-    }
-
-    .header h1 {
-      font-size: 20px;
-      margin: 0;
-      font-weight: 600;
-    }
-
-    .header p {
-      font-size: 13px;
-      margin-top: 6px;
-      opacity: 0.9;
-    }
-
-    .content {
-      padding: 22px;
-    }
-
-    label {
-      font-size: 14px;
-      color: var(--gris);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #D1D5DB;
-      font-size: 15px;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 14px;
-      padding: 13px;
-      background-color: var(--verde);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    button:hover {
-      opacity: 0.95;
-    }
-
-    .resultado {
-      margin-top: 22px;
-      font-size: 14px;
-      color: var(--texto);
-    }
-
-    .resultado p {
-      margin: 6px 0;
-    }
-
-    /* ESTRELLAS */
-    .estrellas-box {
-      background: var(--azul-claro);
-      border-left: 5px solid var(--azul);
-      padding: 14px;
-      border-radius: 12px;
-      margin: 16px 0 8px 0;
-      text-align: center;
-    }
-
-    .estrellas-numero {
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--dorado);
-    }
-
-    .mensaje {
-      font-size: 13px;
-      color: var(--gris);
-      margin-top: 6px;
-    }
-
-    /* CATEGORÍAS */
-    .categorias {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .chip {
-      background: #E8F7EE;
-      color: #2E7D5B;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12.5px;
-    }
-
-    .error {
-      color: #D32F2F;
-      margin-top: 14px;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      padding: 16px;
-      font-size: 12px;
-      color: #9CA3AF;
-    }
-  </style>
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
   <div class="card">
-  <div class="header">
-  <img src="docs/img/logo-recaudo.png" alt="Recaudo Bogotá" class="logo">
-  <h1>Consulta de Estrellas</h1>
-  <p>Recaudo Bogotá</p>
-</div>
+    <div class="header">
+      <img src="img/logo-recaudo.png" alt="Recaudo Bogotá" class="logo">
+      <h1>Consulta de Estrellas</h1>
+      <p>Recaudo Bogotá</p>
+    </div>
 
-    
     <div class="content">
       <label for="cedula">Número de documento</label>
       <input type="text" id="cedula" placeholder="Ingresa tu cédula">
