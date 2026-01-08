@@ -1,5 +1,5 @@
 :root {
-  --azul-suave: #3A7BD5;
+  --azul: #0B4FA3;
   --azul-claro: #EAF2FF;
   --verde: #2FB36F;
   --fondo: #F4F6F9;
@@ -35,7 +35,7 @@ body {
 
 /* HEADER */
 .header {
-  background: linear-gradient(135deg, #0B4FA3, #0A3F85);
+  background: linear-gradient(135deg, #3A7BD5, #0B4FA3);
   color: white;
   padding: 22px;
   text-align: center;
