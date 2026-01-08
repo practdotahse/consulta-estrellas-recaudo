@@ -37,10 +37,10 @@ body {
 
 /* HEADER – FONDO BLANCO */
 .header {
-  background: #ffffff;
+  background: #8aa6bf;
   padding: 24px 22px 18px 22px;
   text-align: center;
-  border-bottom: 4px solid var(--azul-acento);
+  border-bottom: 4px solid var(--azul-principal);
 }
 
 /* LOGO */
@@ -56,14 +56,13 @@ body {
   font-size: 20px;
   margin: 0;
   font-weight: 600;
-  color: var(--azul-principal);
+  color: #0B4FA3; /* azul oscuro */
 }
 
-/* SUBTÍTULO */
 .header p {
   font-size: 13px;
   margin-top: 6px;
-  color: var(--gris);
+  color: #1F2937; /* gris oscuro */
 }
 
 /* CONTENT */
