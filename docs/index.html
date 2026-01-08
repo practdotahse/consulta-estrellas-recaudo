@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Estrellas – Recaudo Bogotá</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --azul: #0056A4;
+      --azul-claro: #E6F0FA;
+      --gris: #555;
+      --blanco: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--azul-claro);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: var(--blanco);
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      color: var(--azul);
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      color: var(--gris);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    label {
+      font-size: 14px;
+      color: var(--gris);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px;
+      background-color: var(--azul);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .resultado strong {
+      color: var(--azul);
+    }
+
+    ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .error {
+      color: red;
+      margin-top: 12px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="header">
+      <h1>Consulta de Estrellas</h1>
+      <p>Recaudo Bogotá</p>
+    </div>
+
+    <label for="cedula">Número de documento</label>
+    <input type="text" id="cedula" placeholder="Ingresa tu cédula">
+
+    <button onclick="buscar()">Buscar</button>
+
+    <div id="resultado" class="resultado"></div>
+    <div id="error" class="error"></div>
+
+    <footer>
+      Información solo para consulta
+    </footer>
+  </div>
+
+<script>
+let datos = [];
+
+fetch('data.json')
+  .then(res => res.json())
+  .then(json => datos = json);
+
+function buscar() {
+  const cedula = document.getElementById('cedula').value.trim();
+  const resultado = document.getElementById('resultado');
+  const error = document.getElementById('error');
+
+  resultado.innerHTML = '';
+  error.innerHTML = '';
+
+  const persona = datos.find(p => p.cedula.toString() === cedula);
+
+  if (!persona) {
+    error.textContent = 'No se encontraron registros para este documento.';
+    return;
+  }
+
+  let categoriasHTML = '';
+  persona.categorias.forEach(cat => {
+    categoriasHTML += `<li>${cat}</li>`;
+  });
+
+  resultado.innerHTML = `
+    <p><strong>Nombre:</strong> ${persona.nombre}</p>
+    <p><strong>Cargo:</strong> ${persona.cargo}</p>
+    <p><strong>Total de puntos:</strong> ${persona.total}</p>
+    <p><strong>Categorías reconocidas:</strong></p>
+    <ul>${categoriasHTML}</ul>
+  `;
+}
+</script>
+
+</body>
+</html>
 
