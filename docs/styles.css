@@ -1,7 +1,7 @@
 :root {
   --azul-principal: #0B4FA3;
-  --azul-header: #8aa6bf;
   --azul-acento: #3A7BD5;
+  --azul-header: #8aa6bf;
   --azul-fondo: #EAF2FF;
   --verde: #2FB36F;
   --fondo: #F4F6F9;
@@ -36,9 +36,9 @@ body {
   box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
 
-/* HEADER – FONDO BLANCO */
+/* HEADER */
 .header {
-  background: #8aa6bf;
+  background: var(--azul-header);
   padding: 24px 22px 18px 22px;
   text-align: center;
   border-bottom: 4px solid var(--azul-principal);
@@ -57,13 +57,14 @@ body {
   font-size: 20px;
   margin: 0;
   font-weight: 600;
-  color: #0B4FA3; /* azul oscuro */
+  color: var(--azul-principal);
 }
 
+/* SUBTÍTULO */
 .header p {
   font-size: 13px;
   margin-top: 6px;
-  color: #1F2937; /* gris oscuro */
+  color: #1F2937;
 }
 
 /* CONTENT */
