@@ -7,11 +7,12 @@
 
   <style>
     :root {
-      --azul: #0056A4;
-      --azul-sec: #0A74DA;
-      --fondo: #F4F7FB;
+      --azul: #0B4FA3;
+      --azul-claro: #EAF2FF;
+      --verde: #2FB36F;
+      --fondo: #F4F6F9;
       --texto: #333;
-      --gris: #777;
+      --gris: #6B7280;
       --blanco: #ffffff;
     }
 
@@ -21,7 +22,7 @@
 
     body {
       margin: 0;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
       background-color: var(--fondo);
       display: flex;
       justify-content: center;
@@ -34,26 +35,33 @@
       background: var(--blanco);
       width: 100%;
       max-width: 420px;
-      padding: 28px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
     }
 
+    /* HEADER */
     .header {
+      background: linear-gradient(135deg, #0B4FA3, #0A3F85);
+      color: white;
+      padding: 22px;
       text-align: center;
-      margin-bottom: 24px;
     }
 
     .header h1 {
-      color: var(--azul);
-      font-size: 22px;
+      font-size: 20px;
       margin: 0;
+      font-weight: 600;
     }
 
     .header p {
-      color: var(--gris);
-      font-size: 14px;
+      font-size: 13px;
       margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 22px;
     }
 
     label {
@@ -67,24 +75,19 @@
       width: 100%;
       padding: 12px;
       border-radius: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid #D1D5DB;
       font-size: 15px;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: var(--azul-sec);
     }
 
     button {
       width: 100%;
-      margin-top: 16px;
-      padding: 14px;
-      background: linear-gradient(135deg, var(--azul), var(--azul-sec));
+      margin-top: 14px;
+      padding: 13px;
+      background-color: var(--verde);
       color: white;
       border: none;
-      border-radius: 12px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
     }
@@ -94,7 +97,7 @@
     }
 
     .resultado {
-      margin-top: 24px;
+      margin-top: 22px;
       font-size: 14px;
       color: var(--texto);
     }
@@ -103,39 +106,46 @@
       margin: 6px 0;
     }
 
-    /* ⭐ ESTRELLAS PROTAGONISTAS */
-    .estrellas {
-      font-size: 26px;
-      margin: 16px 0 10px 0;
-      font-weight: 700;
-      color: #f5b301;
-      text-align: center;
+    /* TARJETA DE ESTRELLAS */
+    .estrellas-box {
+      background: var(--azul-claro);
+      border-left: 5px solid var(--azul);
+      padding: 12px;
+      border-radius: 10px;
+      margin: 14px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--azul);
     }
 
-    .mensaje {
-      text-align: center;
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 18px;
+    /* CATEGORÍAS */
+    .categorias {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
     }
 
-    ul {
-      padding-left: 18px;
-      margin-top: 6px;
+    .chip {
+      background: #E8F7EE;
+      color: #2E7D5B;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12.5px;
     }
 
     .error {
-      color: #d32f2f;
-      margin-top: 16px;
+      color: #D32F2F;
+      margin-top: 14px;
       font-size: 14px;
       text-align: center;
     }
 
     footer {
       text-align: center;
-      margin-top: 22px;
+      padding: 16px;
       font-size: 12px;
-      color: #999;
+      color: #9CA3AF;
     }
   </style>
 </head>
@@ -148,16 +158,18 @@
       <p>Recaudo Bogotá</p>
     </div>
 
-    <label for="cedula">Número de documento</label>
-    <input type="text" id="cedula" placeholder="Ingresa tu cédula">
+    <div class="content">
+      <label for="cedula">Número de documento</label>
+      <input type="text" id="cedula" placeholder="Ingresa tu cédula">
 
-    <button onclick="buscar()">Consultar</button>
+      <button onclick="buscar()">Consultar</button>
 
-    <div id="resultado" class="resultado"></div>
-    <div id="error" class="error"></div>
+      <div id="resultado" class="resultado"></div>
+      <div id="error" class="error"></div>
+    </div>
 
     <footer>
-      Información solo para consulta
+      Información tomada de la base oficial de reconocimientos
     </footer>
   </div>
 
@@ -185,32 +197,23 @@ function buscar() {
     return;
   }
 
-  // ⭐ Mensaje según estrellas
-  let mensaje = persona.total >= 5
-    ? '🌟 Excelente desempeño'
-    : persona.total >= 3
-      ? '👏 Buen trabajo'
-      : '💪 Sigue así';
-
   let categoriasHTML = '';
   persona.categorias.forEach(cat => {
-    categoriasHTML += `<li>${cat}</li>`;
+    categoriasHTML += `<span class="chip">${cat}</span>`;
   });
 
   resultado.innerHTML = `
     <p><strong>Nombre:</strong> ${persona.nombre}</p>
     <p><strong>Cargo:</strong> ${persona.cargo}</p>
 
-    <div class="estrellas">
-      ESTRELLAS ⭐ ${persona.total}
-    </div>
-
-    <div class="mensaje">
-      ${mensaje}
+    <div class="estrellas-box">
+      ⭐ ESTRELLAS: ${persona.total}
     </div>
 
     <p><strong>Categorías reconocidas:</strong></p>
-    <ul>${categoriasHTML}</ul>
+    <div class="categorias">
+      ${categoriasHTML}
+    </div>
   `;
 }
 </script>
