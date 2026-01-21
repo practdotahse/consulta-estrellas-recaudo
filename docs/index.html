@@ -56,14 +56,10 @@ function buscar() {
     return;
   }
 
-  let mensaje = '';
-  if (persona.total >= 6) {
-    mensaje = '🌟 Excelente desempeño';
-  } else if (persona.total >= 3) {
-    mensaje = '👏 Buen trabajo';
-  } else {
-    mensaje = '💪 Sigue así';
-  }
+ let mensaje = 'Gracias por tu compromiso y participación. ' +
+  'Por cada estrella que hayas ganado, te cargaremos 1.000 puntos en RB Contigo ' +
+  'para que puedas redimirlos en cualquier comercio aliado en la plataforma.';
+
 
   let categoriasHTML = '';
   persona.categorias.forEach(cat => {
