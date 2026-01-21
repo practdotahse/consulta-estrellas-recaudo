@@ -137,12 +137,6 @@ button:hover {
   color: var(--dorado);
 }
 
-.mensaje2 {
-  font-size: 13px;
-  color: var(--negro);
-  margin-top: 6px;
-}
-
 /* CATEGORÍAS */
 .categorias {
   display: flex;
